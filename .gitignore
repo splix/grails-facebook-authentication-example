@@ -1,0 +1,10 @@
+.project
+.settings
+.classpath
+*.iml
+*.ipr
+*.iws
+*.zip
+target
+*.log
+/target
