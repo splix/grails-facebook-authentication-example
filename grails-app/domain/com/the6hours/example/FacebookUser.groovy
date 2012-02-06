@@ -1,10 +1,10 @@
-package com.test
+package com.the6hours.example
 
 import com.the6hours.grails.springsecurity.facebook.FacebookUserDomain
 
 import com.the6hours.example.User
 
-class MyFacebookUser implements FacebookUserDomain {
+class FacebookUser implements FacebookUserDomain {
 
 	long uid
     String accessToken

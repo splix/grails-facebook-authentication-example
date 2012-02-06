@@ -100,5 +100,5 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.the6hours.ex
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.the6hours.example.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.the6hours.example.Role'
 
-//facebook keys are configured at local-config.groovy
-grails.plugins.springsecurity.facebook.domain.classname='com.test.MyFacebookUser'
+//facebook keys are configured at $HOME/.grails/s2fb-config.properties
+grails.plugins.springsecurity.facebook.domain.classname='com.the6hours.example.FacebookUser'
