@@ -46,5 +46,5 @@ grails.project.dependency.resolution = {
     }
 }
 
-grails.plugin.location.'spring-security-facebook' = '/Users/splix/Projects/grails-dev/grails-spring-security-facebook'
+//grails.plugin.location.'spring-security-facebook' = '/Users/splix/Projects/grails-dev/grails-spring-security-facebook'
 
