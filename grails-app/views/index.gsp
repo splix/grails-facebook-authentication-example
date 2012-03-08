@@ -91,6 +91,8 @@
             </sec:ifNotGranted>
             <sec:ifAllGranted roles="ROLE_FACEBOOK">
                 Welcome! <sec:username/>
+
+                <g:link uri="/j_spring_security_logout">Logout</g:link>
             </sec:ifAllGranted>
 
 		</div>
