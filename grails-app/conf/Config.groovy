@@ -102,3 +102,4 @@ grails.plugins.springsecurity.authority.className = 'com.the6hours.example.Role'
 
 //facebook keys are configured at $HOME/.grails/s2fb-config.properties
 grails.plugins.springsecurity.facebook.domain.classname='com.the6hours.example.FacebookUser'
+//grails.plugins.springsecurity.facebook.host='plugin-test.dev'

@@ -83,6 +83,14 @@
 			   click on each to execute its default action:</p>
 
             <h2>Facebook Authentication</h2>
+            <facebookAuth:init>
+                FB.Event.subscribe('auth.login', function() {
+                    if (typeof(console) === 'object' && typeof(console.log) === 'function') {
+                        console.log('Process auth.login...');
+                    }
+                    window.location.reload();
+                });
+            </facebookAuth:init>
             <sec:ifNotGranted roles="ROLE_FACEBOOK">
                 <ul>
                     <li><facebookAuth:connect permissions="email"/> with permissions: email</li>
@@ -92,7 +100,19 @@
             <sec:ifAllGranted roles="ROLE_FACEBOOK">
                 Welcome! <sec:username/>
 
-                <g:link uri="/j_spring_security_logout">Logout</g:link>
+                <g:javascript>
+                function doLogout() {
+                    if (typeof(FB) === 'object') {
+                        FB.logout(function() {
+                            window.location.href = "${createLink(uri: '/j_spring_security_logout')}";
+                        });
+                        return false;
+                    }
+                    return true;
+                }
+                </g:javascript>
+
+                <g:link uri="/j_spring_security_logout" onclick="return doLogout()">Logout</g:link>
             </sec:ifAllGranted>
 
 		</div>
