@@ -57,16 +57,9 @@ grails.exceptionresolver.params.exclude = ['password']
 // enable query caching by default
 grails.hibernate.cache.queries = true
 
-// set per-environment serverURL stem for creating absolute links
-environments {
-    development {
-        grails.logging.jul.usebridge = true
-    }
-    production {
-        grails.logging.jul.usebridge = false
-        grails.serverURL = "http://www.changeme.com"
-    }
-}
+grails.logging.jul.usebridge = true
+
+grails.serverURL="http://plugin-test.dev:8080/${appName}/"
 
 // log4j configuration
 log4j = {
