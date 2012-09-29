@@ -41,10 +41,11 @@ grails.project.dependency.resolution = {
         compile ":hibernate:$grailsVersion"
         compile ":jquery:1.6.1.1"
         compile ":resources:1.1.6"
+        compile "org.grails.plugins:spring-security-facebook:0.9"
 
         //build ":tomcat:$grailsVersion"
     }
 }
 
-grails.plugin.location.'spring-security-facebook' = '/Users/splix/Projects/grails-dev/grails-spring-security-facebook'
+//grails.plugin.location.'spring-security-facebook' = '/Users/splix/Projects/grails-dev/grails-spring-security-facebook'
 
