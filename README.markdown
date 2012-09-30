@@ -1,7 +1,7 @@
 Example of Facebook Auth plugin for Grails
 ==========================================
 
-For Grails 2.0
+Uses Grails 2.1.1
 
 How to run
 ----------
