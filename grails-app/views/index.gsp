@@ -77,13 +77,10 @@
 	<body>
 		<div id="page-body" role="main">
 			<h1>Welcome to Grails</h1>
-			<p>Congratulations, you have successfully started your first Grails application! At the moment
-			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
-			   content you may choose. Below is a list of controllers that are currently deployed in this application,
-			   click on each to execute its default action:</p>
+			<p>Congratulations, you have successfully started Facebook Authentication plugin example</p>
 
             <h2>Facebook Authentication</h2>
-            <facebookAuth:init>
+            <facebookAuth:init> <!-- for client-side authentication -->
                 FB.Event.subscribe('auth.login', function() {
                     if (typeof(console) === 'object' && typeof(console.log) === 'function') {
                         console.log('Process auth.login...');
@@ -93,14 +90,13 @@
             </facebookAuth:init>
             <sec:ifNotGranted roles="ROLE_FACEBOOK">
                 <ul>
-                    <li><facebookAuth:connect permissions="email"/> with permissions: email</li>
-                    <li><facebookAuth:connect permissions="${['email', 'user_about_me']}"/> with permissions: email, user_about_me</li>
+                    <li><facebookAuth:connect/></li>
                 </ul>
             </sec:ifNotGranted>
             <sec:ifAllGranted roles="ROLE_FACEBOOK">
                 Welcome! <sec:username/>
 
-                <g:javascript>
+                <g:javascript> <!-- for client-side authentication -->
                 function doLogout() {
                     if (typeof(FB) === 'object') {
                         FB.logout(function() {
@@ -112,7 +108,7 @@
                 }
                 </g:javascript>
 
-                <g:link uri="/j_spring_security_logout" onclick="return doLogout()">Logout</g:link>
+                <g:link uri="/j_spring_security_logout">Logout</g:link>
             </sec:ifAllGranted>
 
 		</div>
