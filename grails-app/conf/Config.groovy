@@ -59,7 +59,7 @@ grails.hibernate.cache.queries = true
 
 grails.logging.jul.usebridge = true
 
-grails.serverURL="http://plugin-test.dev:8080/${appName}/"
+grails.serverURL="http://plugin-test.dev:8080/${appName}"
 
 // log4j configuration
 log4j = {
