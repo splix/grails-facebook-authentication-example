@@ -39,6 +39,14 @@
                 </g:javascript>
 
                 <g:link uri="/j_spring_security_logout">Logout</g:link>
+
+                <div class="actions">
+                    <h2>More actions:</h2>
+                    <ul>
+                    <li><g:link controller="testing" action="expireToken">Expire Facebook access_token</g:link> - to test
+                    how plugin going to reload it from facebook</li>
+                    </ul>
+                </div>
             </sec:ifAllGranted>
 
 		</div>
