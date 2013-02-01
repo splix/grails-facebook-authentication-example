@@ -99,4 +99,4 @@ grails.plugins.springsecurity.facebook.domain.classname='com.the6hours.example.F
 
 //grails.plugins.springsecurity.facebook.filter.type='transparent,cookieDirect,json'
 
-grails.plugins.springsecurity.facebook.beans.redirectFailureHandler='redirectFailureHandlerExample'
+grails.plugins.springsecurity.facebook.filter.redirect.failureHandler='redirectFailureHandlerExample'
