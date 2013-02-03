@@ -1,10 +1,15 @@
+import com.the6hours.example.RedirectFailureToRegistration
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler
 
-// Place your Spring DSL code here
 beans = {
 
     redirectFailureHandlerExample(SimpleUrlAuthenticationFailureHandler) {
         defaultFailureUrl = '/failed'
+    }
+
+    redirectFailureHandler(RedirectFailureToRegistration) {
+        defaultFailureUrl = '/failed'
+        registrationUrl = '/register'
     }
 
 }

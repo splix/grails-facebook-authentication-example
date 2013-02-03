@@ -117,3 +117,6 @@ grails.plugins.springsecurity.facebook.filter.redirect.failureHandler='redirectF
 
 //uncomment to disable autocreation of new user from Facebook (disables authentication for such users)
 //grails.plugins.springsecurity.facebook.autoCreate.enabled=false
+
+//uncomment if you want to redirect users to registration page (works only with .autoCreate.enabled=false)
+//grails.plugins.springsecurity.facebook.filter.redirect.failureHandler='redirectFailureHandler'
