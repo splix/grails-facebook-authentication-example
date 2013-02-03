@@ -38,10 +38,25 @@
                 }
                 </g:javascript>
 
+
+                <h2>Details</h2>
+
+                <table>
+                    <tr>
+                        <td>Username:</td>
+                        <td><sec:loggedInUserInfo field="username"/></td>
+                    </tr>
+                    <tr>
+                        <td>Roles:</td>
+                        <td><sec:loggedInUserInfo field="authorities"/></td>
+                    </tr>
+                </table>
+
+                <h2>Logout</h2>
                 <g:link uri="/j_spring_security_logout">Logout</g:link>
 
+                <h2>More actions:</h2>
                 <div class="actions">
-                    <h2>More actions:</h2>
                     <ul>
                     <li><g:link controller="testing" action="expireToken">Expire Facebook access_token</g:link> - to test
                     how plugin going to reload it from facebook</li>
