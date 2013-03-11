@@ -120,3 +120,6 @@ grails.plugins.springsecurity.facebook.filter.redirect.failureHandler='redirectF
 
 //uncomment if you want to redirect users to registration page (works only with .autoCreate.enabled=false)
 //grails.plugins.springsecurity.facebook.filter.redirect.failureHandler='redirectFailureHandler'
+
+//configuration for json authentication
+//grails.plugins.springsecurity.facebook.filter.json.type='jsonp' //'json' by default

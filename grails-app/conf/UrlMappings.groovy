@@ -7,6 +7,8 @@ class UrlMappings {
 			}
 		}
 
+        "/json"(controller: 'json', action: 'show')
+
 		"/"(view:"/index")
         "/failed"(view:"/failed")
         "/register"(view:"/register")
