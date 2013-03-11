@@ -1,5 +1,6 @@
 import com.the6hours.grails.springsecurity.facebook.FacebookAuthToken
 import com.the6hours.example.FacebookUser
+import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.GrantedAuthority
 import com.the6hours.example.User
@@ -18,6 +19,20 @@ class FacebookAuthService {
 
     void afterCreate(FacebookUser user, FacebookAuthToken token) {
         log.info("User created: $user for fb user: $token.uid")
+    }
+
+    Map onJsonSuccess(Map input, FacebookAuthToken token) {
+        input['demo'] = 'An message from FacebookAuthService'
+        return input
+    }
+
+    Map onJsonFailure(Map input, AuthenticationException exception) {
+        StackTraceElement stack = exception.stackTrace.last()
+        input['stacktrace'] = [
+                line: stack.lineNumber,
+                classname: stack.className
+        ]
+        return input
     }
 
     // ********************************************************************************************
