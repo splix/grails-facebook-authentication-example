@@ -21,7 +21,7 @@ and then you can:
 grails run-app
 ```
 
-Questions?
-----------
+Authors
+-------
 
-Have any questions? Contact me: igor@artamonov.ru
+[Igor Artamonov](http://igorartamonov.com) and [The 6 Hours](http://the6hours.com)
