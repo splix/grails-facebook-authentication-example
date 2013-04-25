@@ -41,7 +41,7 @@ grails.project.dependency.resolution = {
         compile ":jquery:1.6.1.1"
         compile ":resources:1.1.6"
         compile ":webxml:1.4.1"
-        compile "org.grails.plugins:spring-security-facebook:0.13"
+        compile "org.grails.plugins:spring-security-facebook:0.14"
 
         //build ":tomcat:$grailsVersion"
     }
