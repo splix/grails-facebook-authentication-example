@@ -6,6 +6,10 @@ import org.springframework.security.core.GrantedAuthority
 import com.the6hours.example.User
 import com.the6hours.example.UserRole
 import com.the6hours.example.Role
+import org.springframework.social.facebook.api.Facebook
+import org.springframework.social.facebook.api.FacebookProfile
+import org.springframework.social.facebook.api.impl.FacebookTemplate
+
 /**
  * 
  * @author Igor Artamonov (http://igorartamonov.com)
@@ -35,6 +39,48 @@ class FacebookAuthService {
         return input
     }
 
+    /**
+     * Called when we have a new facebook user, called on first login to create all required
+     * data structures. Replaces .createAppUser and .createRoles methods.
+     *
+     * @param token facebook authentication token
+     */
+    FacebookUser create(FacebookAuthToken token) {
+        log.info("Create domain for facebook user $token.uid")
+
+        //Use Spring Social Facebook to load details for current user from Facebook API
+        Facebook facebook = new FacebookTemplate(token.accessToken.accessToken)
+        FacebookProfile fbProfile = facebook.userOperations().userProfile
+        String email = fbProfile.email
+        String username = fbProfile.username
+        String firstName = fbProfile.firstName
+        String lastName = fbProfile.lastName
+
+        User person = new User(
+                username: username,
+                password: token.accessToken.accessToken, //not really necessary
+                enabled: true,
+                accountExpired:  false,
+                accountLocked: false,
+                passwordExpired: false,
+
+                //fill with data loaded from Facebook API
+                name: [firstName, lastName].join(' '),
+                email: email
+        )
+        person.save()
+        UserRole.create(person, Role.findByAuthority('ROLE_USER'))
+        UserRole.create(person, Role.findByAuthority('ROLE_FACEBOOK'))
+        FacebookUser fbUser = new FacebookUser(
+                uid: token.uid,
+                accessToken: token.accessToken.accessToken,
+                accessTokenExpires: token.accessToken.expireAt,
+                user: person
+        )
+        fbUser.save()
+        return fbUser
+    }
+
     // ********************************************************************************************
     //
     // You can remove X_ prefix from following methods, if you need some logic specific for your app
@@ -57,38 +103,8 @@ class FacebookAuthService {
     /**
      * !!! remove X_ to use this method
      *
-     * Called when we have a new facebook user, called on first login to create all required
-     * data structures
-     *
-     * @param token facebook authentication token
-     */
-    FacebookUser X_create(FacebookAuthToken token) {
-        log.info("Create domain for facebook user $token.uid")
-        User person = new User(
-                username: "test_$token.uid",
-                password: '********',
-                enabled: true,
-                accountExpired:  false,
-                accountLocked: false,
-                passwordExpired: false
-        )
-        person.save()
-        UserRole.create(person, Authority.findByAuthority('ROLE_USER'))
-        UserRole.create(person, Authority.findByAuthority('ROLE_FACEBOOK'))
-        FacebookUser fbUser = new FacebookUser(
-                uid: token.uid,
-                accessToken: token.accessToken,
-                user: person
-        )
-        fbUser.save()
-        return fbUser
-    }
-
-    /**
-     * !!! remove X_ to use this method
-     *
      * Called when we have a new facebook user, called on first login to create main app User domain (when
-     * we store Facebook User details in different domain)
+     * we store Facebook User details in own domain)
      *
      * @param token facebook authentication token
      */

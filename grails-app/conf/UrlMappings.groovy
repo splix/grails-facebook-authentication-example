@@ -9,7 +9,7 @@ class UrlMappings {
 
         "/json"(controller: 'json', action: 'show')
 
-		"/"(view:"/index")
+		"/"(controller: 'index', action: 'show')
         "/failed"(view:"/failed")
         "/register"(view:"/register")
 		"500"(view:'/error')

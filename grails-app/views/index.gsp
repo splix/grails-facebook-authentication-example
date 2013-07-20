@@ -50,6 +50,14 @@
                         <td>Roles:</td>
                         <td><sec:loggedInUserInfo field="authorities"/></td>
                     </tr>
+                    <tr>
+                        <td>Full name:</td>
+                        <td>${user.name.encodeAsHTML()}</td>
+                    </tr>
+                    <tr>
+                        <td>E-Mail:</td>
+                        <td>${user.email.encodeAsHTML()}</td>
+                    </tr>
                 </table>
 
                 <h2>Logout</h2>
