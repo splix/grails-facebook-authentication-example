@@ -30,7 +30,7 @@
                 function doLogout() {
                     if (typeof(FB) === 'object') {
                         FB.logout(function() {
-                            window.location.href = "${createLink(uri: '/j_spring_security_logout')}";
+                            window.location.href = "${createLink(controller: 'logout', action: 'index')}";
                         });
                         return false;
                     }
@@ -61,7 +61,7 @@
                 </table>
 
                 <h2>Logout</h2>
-                <g:link uri="/j_spring_security_logout">Logout</g:link>
+                <g:link controller="logout" action="index">Logout</g:link>
 
                 <h2>More actions:</h2>
                 <div class="actions">
