@@ -67,7 +67,7 @@
                 <div class="actions">
                     <ul>
                     <li><g:link controller="testing" action="expireToken">Expire Facebook access_token</g:link> - to test
-                    how plugin going to reload it from facebook</li>
+                    how plugin is going to reload it from facebook</li>
                     </ul>
                 </div>
             </sec:ifAllGranted>
