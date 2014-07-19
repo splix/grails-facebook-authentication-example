@@ -1,4 +1,4 @@
-import grails.plugins.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.SpringSecurityService
 
 class IndexController {
 

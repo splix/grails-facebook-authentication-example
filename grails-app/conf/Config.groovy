@@ -91,9 +91,15 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.the6hours.example.User'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.the6hours.example.UserRole'
-grails.plugins.springsecurity.authority.className = 'com.the6hours.example.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.the6hours.example.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.the6hours.example.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.the6hours.example.Role'
+
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.interceptUrlMap = [
+        '/':                  ['permitAll'],
+        '/**':                  ['permitAll'],
+]
 
 //
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -104,12 +110,12 @@ grails.plugins.springsecurity.authority.className = 'com.the6hours.example.Role'
 //
 //
 
-grails.plugins.springsecurity.facebook.domain.classname='com.the6hours.example.FacebookUser'
+grails.plugin.springsecurity.facebook.domain.classname='com.the6hours.example.FacebookUser'
 //grails.plugins.springsecurity.facebook.host='plugin-test.dev'
 
 //grails.plugins.springsecurity.facebook.filter.type='transparent,cookieDirect,json'
 
-grails.plugins.springsecurity.facebook.filter.redirect.failureHandler='redirectFailureHandlerExample'
+grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='redirectFailureHandlerExample'
 
 //uncomment to use this roles for newly created user
 //by default plugins uses only 'ROLE_USER', 'ROLE_FACEBOOK' roles

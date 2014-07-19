@@ -2,8 +2,8 @@ grails.servlet.version = "2.5" // Change depending on target container complianc
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.project.source.level = 1.6
-grails.project.target.level = 1.6
+grails.project.source.level = 1.7
+grails.project.target.level = 1.7
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 grails.project.dependency.resolution = {
@@ -21,6 +21,7 @@ grails.project.dependency.resolution = {
         grailsHome()
         grailsCentral()
         mavenCentral()
+        mavenRepo 'http://repo1.maven.org/maven2'
 
         // uncomment these to enable remote dependency resolution from public Maven repositories
         //mavenCentral()
@@ -41,15 +42,14 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        compile ":hibernate:$grailsVersion"
-        compile ":jquery:1.6.1.1"
-        compile ":resources:1.1.6"
-        compile ":webxml:1.4.1"
-        compile "org.grails.plugins:spring-security-facebook:0.15"
-
-        //build ":tomcat:$grailsVersion"
+        build ":tomcat:7.0.54"
+        compile ":hibernate:3.6.10.16"
+        compile ":jquery:1.11.1"
+//        compile ":resources:1.2.8"
+//        compile ":webxml:1.4.1"
+        compile "org.grails.plugins:spring-security-facebook:0.15.2-CORE2"
     }
 }
 
-//grails.plugin.location.'spring-security-facebook' = '/Users/splix/Projects/grails-dev/grails-spring-security-facebook'
+//grails.plugin.location.'spring-security-facebook' = '../grails-spring-security-facebook'
 
