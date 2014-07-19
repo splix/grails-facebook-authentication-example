@@ -1,7 +1,7 @@
 Example of Facebook Auth plugin for Grails
 ==========================================
 
-Uses Grails 2.1.1
+Uses Grails 2.4.2
 
 How to run
 ----------
@@ -11,8 +11,8 @@ Setup an Facebook App, configure app by create file at your HOME directory, name
 with following content:
 
 ```
-grails.plugins.springsecurity.facebook.appId=%APPID%
-grails.plugins.springsecurity.facebook.secret=%SECRET%
+grails.plugin.springsecurity.facebook.appId=%APPID%
+grails.plugin.springsecurity.facebook.secret=%SECRET%
 ```
 
 and then you can:
