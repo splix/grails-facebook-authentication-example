@@ -129,3 +129,6 @@ grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='redirectFa
 
 //configuration for json authentication
 //grails.plugins.springsecurity.facebook.filter.json.type='jsonp' //'json' by default
+
+//uncomment if you want to test the application against future versions of Facebook Platform (ie. 'v2.0' or 'v2.1')
+//grails.plugin.springsecurity.facebook.apiVersion='v2.1'
