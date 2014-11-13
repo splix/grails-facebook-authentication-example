@@ -6,6 +6,7 @@ grails.project.source.level = 1.7
 grails.project.target.level = 1.7
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
+grails.project.dependency.resolver = "maven"
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -45,9 +46,7 @@ grails.project.dependency.resolution = {
         build ":tomcat:7.0.54"
         compile ":hibernate:3.6.10.16"
         compile ":jquery:1.11.1"
-//        compile ":resources:1.2.8"
-//        compile ":webxml:1.4.1"
-        compile "org.grails.plugins:spring-security-facebook:0.15.3-CORE2"
+        compile "org.grails.plugins:spring-security-facebook:0.16.2"
     }
 }
 
