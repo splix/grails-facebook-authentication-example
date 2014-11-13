@@ -4,8 +4,9 @@
 //
 // Path to a file containing secret keys for your app (because we don't want to commit it into public GitHub repo)
 // File should be like:
-// grails.plugins.springsecurity.facebook.appId=<...>
-// grails.plugins.springsecurity.facebook.secret=<...>
+// grails.plugin.springsecurity.facebook.appId=<...>
+// grails.plugin.springsecurity.facebook.secret=<...>
+//
 //
 grails.config.locations = [ "classpath:local-config.properties",
                             "file:${userHome}/.grails/s2fb-config.properties"]
@@ -90,16 +91,22 @@ log4j = {
 
 }
 
-// Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.the6hours.example.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.the6hours.example.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.the6hours.example.Role'
+// for Spring Security Core plugin:
+grails {
+    plugin {
+        springsecurity {
+            userLookup.userDomainClassName = 'com.the6hours.example.User'
+            userLookup.authorityJoinClassName = 'com.the6hours.example.UserRole'
+            authority.className = 'com.the6hours.example.Role'
 
-grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
-grails.plugin.springsecurity.interceptUrlMap = [
-        '/':                  ['permitAll'],
-        '/**':                  ['permitAll'],
-]
+            securityConfigType = "InterceptUrlMap"
+            interceptUrlMap = [
+                    '/':                  ['permitAll'],
+                    '/**':                ['permitAll'],
+            ]
+        }
+    }
+}
 
 //
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -108,24 +115,36 @@ grails.plugin.springsecurity.interceptUrlMap = [
 //
 // Facebook keys are configured at $HOME/.grails/s2fb-config.properties (see header of this file)
 //
+// !!! seriously, see header of this file
+//
 //
 
-grails.plugin.springsecurity.facebook.domain.classname='com.the6hours.example.FacebookUser'
-//grails.plugins.springsecurity.facebook.host='plugin-test.dev'
+grails {
+    plugin {
+        springsecurity {
+            facebook {
+                domain.classname='com.the6hours.example.FacebookUser'
+                host='plugin-test.dev'
 
-//grails.plugins.springsecurity.facebook.filter.type='transparent,cookieDirect,json'
+                filter.types='redirect'
+                //or following:
+                //filter.types='transparent,cookieDirect,json'
 
-grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='redirectFailureHandlerExample'
+                filter.redirect.failureHandler='redirectFailureHandlerExample'
 
-//uncomment to use this roles for newly created user
-//by default plugins uses only 'ROLE_USER', 'ROLE_FACEBOOK' roles
-//grails.plugins.springsecurity.facebook.autoCreate.roles=['ROLE_USER', 'ROLE_FACEBOOK', 'ROLE_EXAMPLE']
+                //uncomment to use this roles for newly created user
+                //by default plugins uses only 'ROLE_USER', 'ROLE_FACEBOOK' roles
+                //autoCreate.roles=['ROLE_USER', 'ROLE_FACEBOOK', 'ROLE_EXAMPLE']
 
-//uncomment to disable autocreation of new user from Facebook (disables authentication for such users)
-//grails.plugins.springsecurity.facebook.autoCreate.enabled=false
+                //uncomment to disable autocreation of new user from Facebook (disables authentication for such users)
+                //autoCreate.enabled=false
 
-//uncomment if you want to redirect users to registration page (works only with .autoCreate.enabled=false)
-//grails.plugins.springsecurity.facebook.filter.redirect.failureHandler='redirectFailureHandler'
+                //uncomment if you want to redirect users to registration page (works only with .autoCreate.enabled=false)
+                //filter.redirect.failureHandler='redirectFailureHandler'
 
-//configuration for json authentication
-//grails.plugins.springsecurity.facebook.filter.json.type='jsonp' //'json' by default
+                //configuration for json authentication
+                //filter.json.type='jsonp' //'json' by default
+            }
+        }
+    }
+}
