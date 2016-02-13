@@ -52,11 +52,11 @@
                     </tr>
                     <tr>
                         <td>Full name:</td>
-                        <td>${user.name.encodeAsHTML()}</td>
+                        <td>${user?.name?.encodeAsHTML()}</td>
                     </tr>
                     <tr>
                         <td>E-Mail:</td>
-                        <td>${user.email.encodeAsHTML()}</td>
+                        <td>${user?.email?.encodeAsHTML()}</td>
                     </tr>
                 </table>
 

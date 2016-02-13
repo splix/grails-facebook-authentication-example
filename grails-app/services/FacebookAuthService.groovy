@@ -1,13 +1,12 @@
 import com.the6hours.grails.springsecurity.facebook.FacebookAuthToken
 import com.the6hours.example.FacebookUser
 import org.springframework.security.core.AuthenticationException
-import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.GrantedAuthority
 import com.the6hours.example.User
 import com.the6hours.example.UserRole
 import com.the6hours.example.Role
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.social.facebook.api.Facebook
-import org.springframework.social.facebook.api.FacebookProfile
 import org.springframework.social.facebook.api.impl.FacebookTemplate
 
 /**
@@ -50,11 +49,10 @@ class FacebookAuthService {
 
         //Use Spring Social Facebook to load details for current user from Facebook API
         Facebook facebook = new FacebookTemplate(token.accessToken.accessToken)
-        FacebookProfile fbProfile = facebook.userOperations().userProfile
+        org.springframework.social.facebook.api.User fbProfile = facebook.userOperations().userProfile
         String email = fbProfile.email
-        String username = fbProfile.username
-        String firstName = fbProfile.firstName
-        String lastName = fbProfile.lastName
+        String username = fbProfile.id
+        String name = fbProfile.name
 
         User person = new User(
                 username: username,
@@ -65,12 +63,10 @@ class FacebookAuthService {
                 passwordExpired: false,
 
                 //fill with data loaded from Facebook API
-                name: [firstName, lastName].join(' '),
+                name: name,
                 email: email
         )
         person.save()
-        UserRole.create(person, Role.findByAuthority('ROLE_USER'))
-        UserRole.create(person, Role.findByAuthority('ROLE_FACEBOOK'))
         FacebookUser fbUser = new FacebookUser(
                 uid: token.uid,
                 accessToken: token.accessToken.accessToken,
@@ -78,6 +74,8 @@ class FacebookAuthService {
                 user: person
         )
         fbUser.save()
+        X_createRoles(fbUser)
+
         return fbUser
     }
 
@@ -157,7 +155,7 @@ class FacebookAuthService {
     Collection<GrantedAuthority> X_getRoles(FacebookUser user) {
         log.info("Ger roles for facebook user #$user.id")
         return user.user.authorities.collect {
-            new GrantedAuthorityImpl(it.authority)
+            new SimpleGrantedAuthority(it.authority)
         }
     }
 
